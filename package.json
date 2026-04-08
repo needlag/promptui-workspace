@@ -1,0 +1,16 @@
+{
+  "name": "promptui-workspace",
+  "private": false,
+  "version": "0.1.0",
+  "description": "PromptUI monorepo",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace promptui && npm run build --workspace promptui-demo",
+    "dev": "npm run dev --workspace promptui-demo",
+    "test": "npm run test --workspace promptui",
+    "typecheck": "npm run typecheck --workspace promptui && npm run typecheck --workspace promptui-demo"
+  }
+}
