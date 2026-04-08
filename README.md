@@ -51,7 +51,7 @@ If you prefer pnpm, the workspace is also configured with `pnpm-workspace.yaml`.
 ## Install the library
 
 ```bash
-npm install promptui
+npm install promptui-workspace
 ```
 
 ## Core API
@@ -62,7 +62,7 @@ import { action, createPromptUI, field, form } from "promptui";
 const ui = createPromptUI({
   id: "lead-qualification",
   title: "Lead Qualification",
-  description: "Capture inquiry details and next-step eligibility"
+  description: "Capture inquiry details and next-step eligibility",
 });
 
 ui.add(
@@ -74,12 +74,12 @@ ui.add(
       field.text({
         id: "fullName",
         label: "Full name",
-        required: true
+        required: true,
       }),
       field.email({
         id: "email",
         label: "Email",
-        required: true
+        required: true,
       }),
       field.select({
         id: "inquiryType",
@@ -88,22 +88,22 @@ ui.add(
         options: [
           { value: "sales", label: "Sales" },
           { value: "partnership", label: "Partnership" },
-          { value: "support", label: "Support" }
-        ]
+          { value: "support", label: "Support" },
+        ],
       }),
       field.textarea({
         id: "message",
-        label: "Message"
-      })
+        label: "Message",
+      }),
     ],
     actions: [
       action.submit({
         id: "submit-lead",
         label: "Submit",
-        intent: "create_lead"
-      })
-    ]
-  })
+        intent: "create_lead",
+      }),
+    ],
+  }),
 );
 ```
 
@@ -116,7 +116,7 @@ ui.onAction("submit-lead", async (payload, ctx) => {
 
   return {
     accepted: true,
-    queue: "sales-intake"
+    queue: "sales-intake",
   };
 });
 
@@ -125,8 +125,8 @@ const result = await ui.dispatch("submit-lead", {
     fullName: "Mario Moreno",
     email: "mario@example.com",
     inquiryType: "sales",
-    message: "I want more information"
-  }
+    message: "I want more information",
+  },
 });
 ```
 
@@ -247,4 +247,3 @@ Raw JSON is not enough on its own. PromptUI adds:
 - richer framework adapters beyond the demo
 - schema export helpers for external automation pipelines
 - workflow composition primitives above the current action model
-
